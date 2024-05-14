@@ -8,19 +8,16 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
-              capabilities:
-                - gpu
+              capabilities: [gpu]
+    image: ollama/ollama:latest
     volumes:
       - ollama:/root/.ollama
     # Uncomment below to expose Ollama API outside the container stack
     ports:
       - 11434:11434
     container_name: ollama
-    pull_policy: always
     tty: true
     restart: unless-stopped
-    image: ollama/ollama:latest
 
   # Uncomment below for WIP: Auth support
   ollama-webui-db:
